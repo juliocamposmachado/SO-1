@@ -99,6 +99,7 @@ const Contact: React.FC = () => {
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition"
                   placeholder="Seu nome"
                   required
+                  autoComplete="name"
                 />
               </div>
 
@@ -113,6 +114,7 @@ const Contact: React.FC = () => {
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition"
                     placeholder="seu@email.com"
                     required
+                    autoComplete="email"
                   />
                 </div>
                 <div>
@@ -124,6 +126,7 @@ const Contact: React.FC = () => {
                     onChange={(e) => setPhone(e.target.value)}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition"
                     placeholder="(11) 99999-9999"
+                    autoComplete="tel"
                   />
                 </div>
               </div>
