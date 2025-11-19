@@ -60,6 +60,9 @@ const Contact: React.FC = () => {
                 <div>
                   <h3 className="font-bold text-gray-900">E-mail</h3>
                   <p className="text-gray-600">radiotatuapefm@gmail.com</p>
+                  <p className="text-gray-600">juliocamposmachado@gmail.com</p>
+                  <p className="text-gray-600 font-bold mt-2">Like Look Solutions:</p>
+                  <p className="text-gray-600">likelook@live.com</p>
                 </div>
               </div>
 
