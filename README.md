@@ -1,20 +1,68 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Projeto SÓ 1 — A Força de Um Só Move Todos
 
-# Run and deploy your AI Studio app
+O **Projeto SÓ 1** é uma iniciativa oficial da **Rádio Tatuapé FM** que promove solidariedade organizada e transparente.  
+Acreditamos que **“a força de um só move todos”**: uma pessoa pode transformar a vida de uma família inteira.
 
-This contains everything you need to run your app locally.
+---
 
-View your app in AI Studio: https://ai.studio/apps/drive/1_xEB6NNHNL6XFf2TeNmdzeCzCjdS_VEm
+## 🌍 Propósito
+- Conectar pessoas que querem ajudar a famílias que precisam.  
+- Garantir **transparência total**: quem ajuda também fiscaliza.  
+- Documentar histórias e visitas, tornando tudo público e auditado.  
 
-## Run Locally
+---
 
-**Prerequisites:**  Node.js
+## 📊 Impacto já alcançado
+- **6.400+ membros engajados**  
+- **120+ famílias apoiadas**  
+- **350+ crianças atendidas**  
+- **15.000+ refeições entregues**  
+- **45+ cursos iniciados**  
+- **85+ voluntários ativos**  
+- **5+ cooperativas criadas**
 
+---
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🔎 Transparência
+- Auditoria feita pelos próprios padrinhos.  
+- Visitas e entregas documentadas e publicadas.  
+- Todo processo é público e acessível.  
+
+---
+
+## 🤝 Como participar
+Existem várias formas de fazer parte dessa corrente do bem:
+
+1. **Entrar no grupo oficial**  
+   - [Grupo WhatsApp](https://chat.whatsapp.com/DdPNSUmjrThFeJnWvfCyNg?mode=hqrt1)  
+   - [Grupo Facebook](https://www.facebook.com/groups/Brasileirissimos.oficial)  
+
+2. **Desejo de Apadrinhamento**  
+   - Manifeste seu desejo de apadrinhar.  
+   - Visitas organizadas com assistentes sociais.  
+
+3. **Solicitar Publicação**  
+   - Indique famílias que precisam de apoio.  
+   - Nós auditamos e ajudamos.  
+
+---
+
+## 📻 Origem
+O projeto é uma iniciativa oficial da **Rádio Tatuapé FM**, transformando comunidades uma família de cada vez, fundamentados na dignidade da pessoa humana.
+
+---
+
+## 📬 Contato
+- Site oficial: [Projeto SÓ 1](https://so-1.vercel.app)  
+- Rádio Tatuapé FM: [Página Oficial](https://radiotatuapefm.com.br)  
+- Email: radiotatuapefm@gmail.com  
+
+---
+
+## 📜 Licença
+Este projeto é distribuído sob a licença MIT.  
+Sinta-se livre para usar, modificar e compartilhar, sempre com transparência e solidariedade.
+
+---
+
+> **De 1 em 1, ajudamos todos.**
