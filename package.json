@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "init-tailwind": "tailwindcss init -p"
+    "init-tailwind": "node ./node_modules/tailwindcss/cli.js init -p"
   },
   "dependencies": {
     "@google/generative-ai": "^0.2.1",
