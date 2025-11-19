@@ -37,8 +37,8 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900">E-mail</h3>
-                  <p className="text-gray-600">contato@radiotatuapefm.com.br</p>
-                  <p className="text-gray-600">projetoso1@radiotatuapefm.com.br</p>
+                  <p className="text-gray-600">radiotatuapefm@gmail.com</p>
+                  <p className="text-gray-600">juliocamposmachado@gmail.com</p>
                 </div>
               </div>
 
@@ -91,7 +91,7 @@ const Contact: React.FC = () => {
                     type="tel" 
                     id="phone"
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition"
-                    placeholder="(11) 99999-9999"
+                    placeholder="(11) 99294-6628"
                   />
                 </div>
               </div>
