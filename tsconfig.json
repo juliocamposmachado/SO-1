@@ -13,8 +13,6 @@
     "types": [
       "node"
     ],
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "moduleResolution": "bundler",
     "isolatedModules": true,
     "moduleDetection": "force",

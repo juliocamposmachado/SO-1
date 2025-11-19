@@ -11,9 +11,13 @@ const ChatAssistant: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // API Configuration via Environment Variable
-  // A chave deve ser configurada no Vercel em Settings > Environment Variables como "API_KEY"
-  const API_KEY = process.env.API_KEY;
+  // Configuração da API Key com Fallback seguro
+  // 1. Tenta usar a variável de ambiente (Vercel)
+  // 2. Se não existir (ex: preview local sem env), usa a chave fornecida diretamente para garantir funcionamento
+  const API_KEY = (typeof process !== 'undefined' && process.env && process.env.API_KEY) 
+    ? process.env.API_KEY 
+    : 'AIzaSyAlYoEBWnTiawEHC3UJ76bukWAWwjpFuYk';
+    
   const MODEL = "gemini-2.0-flash";
 
   // Scroll to bottom of chat
@@ -83,7 +87,9 @@ const ChatAssistant: React.FC = () => {
       );
 
       if (!response.ok) {
-        throw new Error(`API Error: ${response.statusText}`);
+        const errorData = await response.json().catch(() => ({}));
+        console.error("API Error Details:", errorData);
+        throw new Error(`API Error: ${response.status} ${response.statusText}`);
       }
 
       const data = await response.json();
@@ -93,7 +99,7 @@ const ChatAssistant: React.FC = () => {
     } catch (error) {
       console.error("Erro na IA:", error);
       setMessages(prev => [...prev, { 
-        text: "Desculpe, tive um pequeno problema de conexão ou a chave de segurança não foi encontrada. Acesse nosso Grupo do Facebook para falar com humanos reais: https://www.facebook.com/groups/Brasileirissimos.oficial", 
+        text: "Desculpe, tive um pequeno problema de conexão. Acesse nosso Grupo do Facebook para falar com humanos reais: https://www.facebook.com/groups/Brasileirissimos.oficial", 
         isUser: false 
       }]);
     } finally {
@@ -110,11 +116,11 @@ const ChatAssistant: React.FC = () => {
     return (
       <div 
         className="fixed bottom-4 right-4 z-50 bg-brand-dark text-white px-4 py-2 rounded-t-lg shadow-lg cursor-pointer flex items-center space-x-2 border-t-4 border-brand-gold hover:bg-gray-800 transition-colors"
-  onClick={() => setIsMinimized(false)}
+        onClick={() => setIsMinimized(false)}
       >
         <Bot className="h-5 w-5 text-brand-gold" />
         <span className="font-bold text-sm">Atendimento SÓ 1</span>
-        <button onClick={(e) => { e.stopPropagation(); setIsOpen(false); }} className="ml-2 hover:text-brand-red" type="button" aria-label="Fechar assistente">
+        <button onClick={(e) => { e.stopPropagation(); setIsOpen(false); }} className="ml-2 hover:text-brand-red">
           <X className="h-4 w-4" />
         </button>
       </div>
@@ -141,32 +147,24 @@ const ChatAssistant: React.FC = () => {
   return (
     <div className="fixed bottom-4 right-4 z-50 w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 flex flex-col h-[500px] animate-in slide-in-from-bottom-10 duration-300">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 bg-gradient-to-r from-brand-blue to-brand-green text-white shadow-md">
-        <div className="flex items-center">
-          <Bot className="h-6 w-6 mr-2" />
+      <div className="bg-brand-dark p-4 flex items-center justify-between text-white border-b-4 border-brand-gold">
+        <div className="flex items-center space-x-2">
+          <div className="bg-white/10 p-2 rounded-full">
+            <Bot className="h-6 w-6 text-brand-gold" />
+          </div>
           <div>
-            <span className="font-bold text-lg">SÓ 1 Chat</span>
-            <span className="flex items-center text-sm">
-              <span className="block h-2 w-2 rounded-full bg-green-400 animate-pulse mr-1"></span> {/* Added mr-1 for spacing */}
+            <h3 className="font-bold text-sm">Assistente Virtual SÓ 1</h3>
+            <span className="text-xs text-green-400 flex items-center gap-1">
+              <span className="block h-2 w-2 rounded-full bg-green-400 animate-pulse"></span>
               Online
             </span>
           </div>
         </div>
         <div className="flex items-center space-x-1">
-          <button 
-            onClick={() => setIsMinimized(true)} 
-            className="p-1 hover:bg-white/20 rounded transition"
-            type="button" // Added: Explicitly set type
-            aria-label="Minimizar assistente" // Added: For accessibility
-          >
+          <button onClick={() => setIsMinimized(true)} className="p-1 hover:bg-white/20 rounded transition">
             <Minus className="h-5 w-5" />
           </button>
-          <button 
-            onClick={() => setIsOpen(false)} 
-            className="p-1 hover:bg-red-500/80 rounded transition"
-            type="button" // Added: Explicitly set type
-            aria-label="Fechar assistente" // Added: For accessibility
-          >
+          <button onClick={() => setIsOpen(false)} className="p-1 hover:bg-red-500/80 rounded transition">
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -210,30 +208,31 @@ const ChatAssistant: React.FC = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input area */}
-      <div className="p-4 border-t border-gray-200 flex items-center bg-gray-50">
-        <input
-          type="text"
-          value={input}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
-          onKeyDown={handleKeyPress} // Changed from onKeyPress to onKeyDown
-          placeholder="Digite sua mensagem..."
-          className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue"
-          disabled={isLoading}
-        />
-        <button
-          onClick={handleSendMessage}
-          className="ml-2 p-2 bg-brand-blue text-white rounded-lg hover:bg-brand-green transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-          disabled={isLoading || !input.trim()}
-          type="button" // Added: Explicitly set type
-          aria-label="Enviar mensagem" // Added: For accessibility
-        >
-          {isLoading ? (
-            <span className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></span>
-          ) : (
-            <Send className="h-5 w-5" />
-          )}
-        </button>
+      {/* Input Area */}
+      <div className="p-3 bg-white border-t border-gray-100">
+        <div className="flex items-center bg-gray-100 rounded-full px-4 py-2 border border-gray-200 focus-within:ring-2 focus-within:ring-brand-gold focus-within:border-transparent transition-all">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Digite sua dúvida..."
+            className="flex-1 bg-transparent outline-none text-sm text-gray-700 placeholder-gray-500"
+            disabled={isLoading}
+          />
+          <button 
+            onClick={handleSendMessage}
+            disabled={isLoading || !input.trim()}
+            className={`ml-2 p-2 rounded-full transition-colors ${
+              input.trim() ? 'bg-brand-gold text-white hover:bg-yellow-600' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+            }`}
+          >
+            <Send className="h-4 w-4" />
+          </button>
+        </div>
+        <div className="text-center mt-2">
+           <span className="text-[10px] text-gray-400">IA do Projeto SÓ 1 - Rádio Tatuapé FM</span>
+        </div>
       </div>
     </div>
   );
