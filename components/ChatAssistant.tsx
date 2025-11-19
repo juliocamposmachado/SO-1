@@ -11,13 +11,11 @@ const ChatAssistant: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Configuração da API Key com Fallback seguro
-  // 1. Tenta usar a variável de ambiente (Vercel)
-  // 2. Se não existir (ex: preview local sem env), usa a chave fornecida diretamente para garantir funcionamento
-  const API_KEY = (typeof process !== 'undefined' && process.env && process.env.API_KEY) 
-    ? process.env.API_KEY 
-    : 'AIzaSyAlYoEBWnTiawEHC3UJ76bukWAWwjpFuYk';
-    
+  // Configuração da API Key via Variável de Ambiente
+  // A chave DEVE ser configurada no Vercel em Settings > Environment Variables como "GEMINI_API_KEY"
+  // E localmente em um arquivo .env.local na raiz do projeto.
+  const API_KEY = process.env.API_KEY;
+  
   const MODEL = "gemini-2.0-flash";
 
   // Scroll to bottom of chat
