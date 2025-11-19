@@ -34,7 +34,7 @@ Acreditamos que **“a força de um só move todos”**: uma pessoa pode transfo
 Existem várias formas de fazer parte dessa corrente do bem:
 
 1. **Entrar no grupo oficial**  
-   - [Grupo WhatsApp](https://www.facebook.com/groups/Brasileirissimos.oficial)  
+   - [Grupo WhatsApp](https://chat.whatsapp.com/DdPNSUmjrThFeJnWvfCyNg?mode=hqrt1)  
    - [Grupo Facebook](https://www.facebook.com/groups/Brasileirissimos.oficial)  
 
 2. **Desejo de Apadrinhamento**  
