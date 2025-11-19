@@ -37,8 +37,9 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900">E-mail</h3>
-                  <p className="text-gray-600">radiotatuapefm@gmail.com</p>
-                  <p className="text-gray-600">juliocamposmachado@gmail.com</p>
+                  <p className="text-red-600">radiotatuapefm@gmail.com</p>
+
+                  <p className="text-red-600">juliocamposmachado@gmail.com</p>
                 </div>
               </div>
 
