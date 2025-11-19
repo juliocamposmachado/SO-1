@@ -55,7 +55,7 @@ O projeto é uma iniciativa oficial da **Rádio Tatuapé FM**, transformando com
 ## 📬 Contato
 - Site oficial: [Projeto SÓ 1](https://so-1.vercel.app)  
 - Rádio Tatuapé FM: [Página Oficial](https://radiotatuapefm.com.br)  
-- Email: contato@projetoso1.org  
+- Email: radiotatuapefm@gmail.com  
 
 ---
 
