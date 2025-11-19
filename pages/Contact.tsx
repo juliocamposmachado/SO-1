@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Button from '../components/Button';
 
 const Contact: React.FC = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [subject, setSubject] = useState('Outros assuntos');
+  const [message, setMessage] = useState('');
+
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const recipient = 'radiotatuapefm@gmail.com';
+    const mailSubject = encodeURIComponent(`Contato - ${subject}: ${name}`);
+    const mailBody = encodeURIComponent(
+      `Nome Completo: ${name}\n` +
+      `E-mail: ${email}\n` +
+      `Telefone: ${phone}\n` +
+      `Assunto: ${subject}\n\n` +
+      `Mensagem:\n${message}`
+    );
+
+    window.location.href = `mailto:${recipient}?subject=${mailSubject}&body=${mailBody}`;
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,8 +59,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900">E-mail</h3>
-                  <p className="text-gray-600">contato@radiotatuapefm.com.br</p>
-                  <p className="text-gray-600">projetoso1@radiotatuapefm.com.br</p>
+                  <p className="text-gray-600">radiotatuapefm@gmail.com</p>
                 </div>
               </div>
 
@@ -64,14 +85,17 @@ const Contact: React.FC = () => {
           {/* Form Column */}
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Envie sua mensagem</h2>
-            <form className="space-y-6">
+            <form onSubmit={handleSendMessage} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
                 <input 
                   type="text" 
                   id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition"
                   placeholder="Seu nome"
+                  required
                 />
               </div>
 
@@ -81,8 +105,11 @@ const Contact: React.FC = () => {
                   <input 
                     type="email" 
                     id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition"
                     placeholder="seu@email.com"
+                    required
                   />
                 </div>
                 <div>
@@ -90,6 +117,8 @@ const Contact: React.FC = () => {
                   <input 
                     type="tel" 
                     id="phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition"
                     placeholder="(11) 99999-9999"
                   />
@@ -100,6 +129,8 @@ const Contact: React.FC = () => {
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Assunto</label>
                 <select 
                   id="subject"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition bg-white"
                 >
                   <option>Quero Apadrinhar (Vi no Facebook)</option>
@@ -116,12 +147,15 @@ const Contact: React.FC = () => {
                 <textarea 
                   id="message"
                   rows={4}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition resize-none"
                   placeholder="Conte-nos como quer ajudar ou quem precisa de ajuda..."
+                  required
                 ></textarea>
               </div>
 
-              <Button fullWidth type="button">
+              <Button fullWidth type="submit">
                 Enviar Mensagem e Preparar Visita
               </Button>
             </form>
