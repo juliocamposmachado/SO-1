@@ -4,6 +4,6 @@
 
 html,
 body {
-  text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%; /* Adicionado para compatibilidade com WebKit */
+  -webkit-text-size-adjust: 100%; /* Vendor-prefixed first for WebKit compatibility */
+  text-size-adjust: 100%;         /* Standard property last */
 }

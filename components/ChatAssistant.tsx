@@ -120,7 +120,15 @@ const ChatAssistant: React.FC = () => {
       >
         <Bot className="h-5 w-5 text-brand-gold" />
         <span className="font-bold text-sm">Atendimento SÓ 1</span>
-        <button onClick={(e) => { e.stopPropagation(); setIsOpen(false); }} className="ml-2 hover:text-brand-red">
+        <button 
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => { // Explicitly type 'e'
+            e.stopPropagation(); 
+            setIsOpen(false); 
+          }} 
+          className="ml-2 hover:text-brand-red"
+          type="button" // Added: Explicitly set type
+          aria-label="Fechar assistente" // Added: For accessibility
+        >
           <X className="h-4 w-4" />
         </button>
       </div>
@@ -161,10 +169,20 @@ const ChatAssistant: React.FC = () => {
           </div>
         </div>
         <div className="flex items-center space-x-1">
-          <button onClick={() => setIsMinimized(true)} className="p-1 hover:bg-white/20 rounded transition">
+          <button 
+            onClick={() => setIsMinimized(true)} 
+            className="p-1 hover:bg-white/20 rounded transition"
+            type="button" // Added: Explicitly set type for non-submit button
+            aria-label="Minimizar assistente" // Added: For screen reader accessibility
+          >
             <Minus className="h-5 w-5" />
           </button>
-          <button onClick={() => setIsOpen(false)} className="p-1 hover:bg-red-500/80 rounded transition">
+          <button 
+            onClick={() => setIsOpen(false)} 
+            className="p-1 hover:bg-red-500/80 rounded transition"
+            type="button" // Added: Explicitly set type for non-submit button
+            aria-label="Fechar assistente" // Added: For screen reader accessibility
+          >
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -214,8 +232,8 @@ const ChatAssistant: React.FC = () => {
           <input
             type="text"
             value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)} // Explicitly typing 'e'
+            onKeyDown={handleKeyPress} // Changed from onKeyPress to onKeyDown
             placeholder="Digite sua dúvida..."
             className="flex-1 bg-transparent outline-none text-sm text-gray-700 placeholder-gray-500"
             disabled={isLoading}
@@ -226,6 +244,8 @@ const ChatAssistant: React.FC = () => {
             className={`ml-2 p-2 rounded-full transition-colors ${
               input.trim() ? 'bg-brand-gold text-white hover:bg-yellow-600' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}
+            type="button" // Added: Explicitly set type
+            aria-label="Enviar mensagem" // Added: For accessibility
           >
             <Send className="h-4 w-4" />
           </button>
